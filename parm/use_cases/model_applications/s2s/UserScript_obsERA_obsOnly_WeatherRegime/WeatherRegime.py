@@ -133,14 +133,18 @@ class WeatherRegimeCalculation():
     def run_K_means(self,a1,yr,mth,day,arr_shape):
 
         arrdims = len(arr_shape)
+        print(arrdims)
 
         k=KMeans(n_clusters=self.wrnum, random_state=0)
+        print(k)
 
         #fit the K-means algorithm to the data
         f=k.fit(a1)
+        print(f)
 
         #Obtain the cluster anomalies
         y=f.cluster_centers_
+        print(y)
 
         #Obtain cluster labels for each day [Reshape to Year,day]
         wr = f.labels_
