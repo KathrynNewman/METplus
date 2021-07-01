@@ -159,6 +159,7 @@ class WeatherRegimeCalculation():
 
         #Sort % from low to high
         ii = np.argsort(perc)
+        print(ii)
         print(perc[ii])
 
         #Reorder
