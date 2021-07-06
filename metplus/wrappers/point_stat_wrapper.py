@@ -38,6 +38,7 @@ class PointStatWrapper(CompareGriddedWrapper):
         'METPLUS_INTERP_DICT',
         'METPLUS_CLIMO_MEAN_DICT',
         'METPLUS_CLIMO_STDEV_DICT',
+        'METPLUS_MESSAGE_TYPE_GROUP_MAP_LIST',
     ]
 
     # handle deprecated env vars used pre v4.0.0
@@ -221,6 +222,8 @@ class PointStatWrapper(CompareGriddedWrapper):
                         },
         )
 
+        self.handle_message_type_group_map_list()
+
         if not c_dict['FCST_INPUT_TEMPLATE']:
             self.log_error('Must set FCST_POINT_STAT_INPUT_TEMPLATE '
                            'in config file')
@@ -236,6 +239,12 @@ class PointStatWrapper(CompareGriddedWrapper):
             self.log_error("POINT_STAT_CONFIG_FILE must be set.")
 
         return c_dict
+
+    def handle_message_type_group_map_list(self):
+        regex = r'^POINT_STAT_MESSAGE_TYPE_GROUP_MAP_KEY(\d+)$'
+        indices = util.find_indices_in_config_section(regex, self.config,
+                                                      index_index=1)
+#        for index, items in indices.items():
 
     def add_obs_valid_args(self, time_info):
         for ext in ['BEG', 'END']:
