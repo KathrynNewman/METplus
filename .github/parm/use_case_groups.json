@@ -112,7 +112,7 @@
   {
     "category": "precipitation",
     "index_list": "3-8",
-    "run": false
+    "run": true
   },
   {
     "category": "s2s",
